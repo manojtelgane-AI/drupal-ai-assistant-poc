@@ -1,0 +1,27 @@
+# Drupal vendor and core
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+
+# Drupal config & files
+/web/sites/*/files/
+/web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
+
+# DDEV
+.ddev/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Env
+.env
+.env.local

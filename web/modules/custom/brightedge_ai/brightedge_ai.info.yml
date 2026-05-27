@@ -1,0 +1,5 @@
+name: 'BrightEdge AI'
+type: module
+description: 'AI-powered chat assistant and demo request lead capture for BrightEdge.'
+package: 'BrightEdge'
+core_version_requirement: ^10 || ^11
