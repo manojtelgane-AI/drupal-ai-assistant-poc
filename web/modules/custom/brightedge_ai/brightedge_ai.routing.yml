@@ -1,3 +1,4 @@
+# AI chat API endpoint.
 brightedge_ai.chat:
   path: '/api/brightedge-ai/chat'
   defaults:
@@ -7,3 +8,21 @@ brightedge_ai.chat:
     _access: 'TRUE'
   options:
     no_cache: TRUE
+
+# Public "Request a Demo" form.
+brightedge_ai.demo_request_form:
+  path: '/request-demo'
+  defaults:
+    _form: '\Drupal\brightedge_ai\Form\DemoRequestForm'
+    _title: 'Request a Demo'
+  requirements:
+    _access: 'TRUE'
+
+# Admin: list demo request submissions.
+entity.brightedge_demo_request.collection:
+  path: '/admin/content/demo-requests'
+  defaults:
+    _entity_list: 'brightedge_demo_request'
+    _title: 'Demo Requests'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,6 @@
+brightedge_ai.demo_requests:
+  title: 'Demo Requests'
+  description: 'View and manage incoming demo requests.'
+  parent: system.admin_content
+  route_name: entity.brightedge_demo_request.collection
+  weight: 10
