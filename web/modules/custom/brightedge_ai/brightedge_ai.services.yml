@@ -1,0 +1,7 @@
+services:
+  brightedge_ai.client:
+    class: Drupal\brightedge_ai\Service\AiClient
+    arguments:
+      - '@http_client'
+      - '@logger.factory'
+      - '@config.factory'
