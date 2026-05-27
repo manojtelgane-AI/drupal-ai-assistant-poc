@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * BrightEdge AI module — hooks and page attachments.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Attaches the chat widget library to every page so the assistant is
+ * available across the marketing site without manual block placement.
+ */
+function brightedge_ai_page_attachments(array &$attachments): void {
+  $attachments['#attached']['library'][] = 'brightedge_ai/chat';
+}

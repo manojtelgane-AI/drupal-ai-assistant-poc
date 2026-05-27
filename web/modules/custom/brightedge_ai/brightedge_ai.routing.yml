@@ -1,0 +1,9 @@
+brightedge_ai.chat:
+  path: '/api/brightedge-ai/chat'
+  defaults:
+    _controller: '\Drupal\brightedge_ai\Controller\ChatController::handle'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
