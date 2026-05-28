@@ -102,11 +102,53 @@
       wrap.className = 'be-ai-msg ' + role;
       var bubble = document.createElement('div');
       bubble.className = 'bubble' + (extraClass ? ' ' + extraClass : '');
-      bubble.textContent = text;
+
+      // Only linkify bot messages; user/error stay plain text.
+      if (role === 'bot' && extraClass !== 'be-ai-typing') {
+        linkify(bubble, text);
+      } else {
+        bubble.textContent = text;
+      }
+
       wrap.appendChild(bubble);
       messagesEl.appendChild(wrap);
       messagesEl.scrollTop = messagesEl.scrollHeight;
       return wrap;
+    }
+
+    /**
+     * Safely turn URLs and internal paths into clickable links.
+     * Builds DOM nodes (textContent for text, anchor for links) so there is
+     * no HTML injection — model text is never parsed as HTML.
+     */
+    function linkify(container, text) {
+      var pattern = /(https?:\/\/[^\s]+|\/request-demo[^\s]*)/g;
+      var lastIndex = 0;
+      var match;
+
+      while ((match = pattern.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          container.appendChild(
+            document.createTextNode(text.slice(lastIndex, match.index))
+          );
+        }
+        var url = match[0];
+        var a = document.createElement('a');
+        a.href = url;
+        a.textContent = url;
+        a.style.color = '#0073e6';
+        a.style.textDecoration = 'underline';
+        if (url.indexOf('http') === 0) {
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+        }
+        container.appendChild(a);
+        lastIndex = pattern.lastIndex;
+      }
+
+      if (lastIndex < text.length) {
+        container.appendChild(document.createTextNode(text.slice(lastIndex)));
+      }
     }
   }
 })(Drupal, once);
